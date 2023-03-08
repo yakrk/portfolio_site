@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Masthead-->
+<header class="masthead text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5" src="{% static 'images/ProfilePic.png'%}" alt="..." />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">Hi I'm YAKRK</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">CX Consultant - Project Manager - Engineer</p>
+    </div>
+</header>
+
+<!-- About Section-->
+<section class="page-section bg-primary  mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase ">About Me</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+
+        </div>
+        <!-- About Section Content-->
+        <div class="row my-4 mx-md-4 mx-2">
+            <div class="col-lg-8 text-lg-start col-sm-12 text-md-left text-center ">
+                <p class="lead"> Hi! I am Yakrk, a part-time freelance engineer with over 10 years of experience as a CX
+                    consultant and project manager in the Japanese tech market. My passion for technology has led me to
+                    explore various fields, including coding. I can support clients achieve their goals in various aspects of the journey.
+                    I'm based in the Osaka area but always happy to work remotely on projects
+                    worldwide. Let's create something great together!</p>
+            </div>
+            <div class="col col-xs-12 text-sm-center text-md-right text-center ">
+                <img src="{% static 'images/using_computer_fast_work.png' %}"
+                    alt="using computer for fast work experienced" width="200" height="200">
+            </div>
+        </div>
+        <div class="row my-4 mx-md-4 mx-4">
+            <div class="col col-xs-12 text-sm-center text-md-left text-center order-2 order-lg-1">
+                <img src="{% static 'images/using_computer_design.png' %}" alt="using computer design experienced"
+                    width="200" height="250">
+            </div>
+            <div class="col-lg-8 text-lg-start col-sm-12 text-md-right text-center order-1 order-lg-2">
+                <p class="lead">As an engineer, I have expertise in the following languages and frameworks, and I am
+                    always eager to continue learning and growing in my field:
+                </p>
+                <div class="row d-flex justify-content-center">
+                    <div class="col text-start mx-4">
+                        <strong>Language</strong>   
+                        <ul>
+                            <li><i class="fab fa-fw fa-python"></i> Python</li>
+                            <li><i class="fa-regular fa-file-code"></i> HTML/CSS</li>
+                            <li><i class="fa-solid fa-database"></i> PostgreSQL</li>
+                        </ul>
+                    </div>
+                    <div class="col text-start">
+                        <strong>Frameworks</strong>
+                        <ul>
+                            <li>Django</li>
+                            <li><i class="fa-brands fa-bootstrap"></i> Bootstrap</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4 mx-md-4 mx-4">
+            <div class="text-center text-md-left text-lg-start ">
+                <p class="lead">With this skillset, I am equipped to handle a variety of projects, from web development
+                    to data analysis and more. Please check my work below and feel free to contact me! </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section-->
+{% include 'partials/top_partials/_portfolio.html' %}
+<!-- contact form section -->
+{% include 'partials/top_partials/_contact_form.html' %}
+{% endblock %}

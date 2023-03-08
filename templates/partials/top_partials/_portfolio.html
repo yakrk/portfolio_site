@@ -1,0 +1,143 @@
+{%load static%}
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+            <!-- Portfolio Item 1-->
+            <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{%static 'images/usingcomputerdataanalysis.png'%}"
+                        alt="Card image cap" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                    <div class="card-body">
+                        <h5 class="card-title">Image Color Palette Generator</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">Color palette generator based on image uploaded. Based off django and
+                            bootstrap.
+                        </p>
+                        <a class="card-link btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#portfolioModal1">Details</a>
+                        <a href="https://github.com/yakrk/image_color_palette_generator_django" class="card-link"
+                            target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal1 -->
+            <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0"><button class="btn-close" type="button"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                        <div class="modal-body text-center pb-5">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <!-- Portfolio Modal - Title-->
+                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Image Color
+                                            Palette Generator
+                                        </h2>
+                                        <!-- Icon Divider-->
+                                        <div class="divider-custom">
+                                            <div class="divider-custom-line"></div>
+                                        </div>
+                                        <!-- Portfolio Modal - Image-->
+                                        <img class="img-fluid rounded mb-5" src="{%static 'images/usingcomputerdataanalysis.png'%}" alt="..." width="400" />
+                                        <!-- Portfolio Modal - Text-->
+                                        <p class="mb-4">From images uploaded, extracts top 10 most used colors. The
+                                            image will not be stored on database. This feature is developed using django
+                                            and bootstrap. </p>
+                                        <a class="btn btn-primary" href="{% url 'color_palette'%}">Check out
+                                            feature</a>
+                                        <div class="my-1">
+                                            <a href="https://github.com/yakrk/image_color_palette_generator_django"
+                                                class="card-link " target="_blank"><i
+                                                    class="fab fa-fw fa-github"></i></a>
+                                        </div>
+                                        <div class="my-4">
+                                            <p class="card-link" data-bs-dismiss="modal">
+                                                <i class="fas fa-xmark fa-fw"></i>
+                                                Close Window
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Portfolio Item 2-->
+            <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{%static 'images/usingcomputerdataanalysis.png'%}"
+                        alt="Card image cap" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                    <div class="card-body">
+                        <h5 class="card-title">Pokémon of the day</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">Show random Pokémon information using public PokeAPI and Mediawiki API.
+                            Based off django and bootstrap.
+                        </p>
+                        <a class="card-link btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#portfolioModal2">Details</a>
+                        <a href="https://github.com/yakrk/" class="card-link" target="_blank"><i
+                                class="fab fa-fw fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal2 -->
+            <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0"><button class="btn-close" type="button"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                        <div class="modal-body text-center pb-5">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <!-- Portfolio Modal - Title-->
+                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Pokémon of
+                                            the day
+                                        </h2>
+                                        <!-- Icon Divider-->
+                                        <div class="divider-custom">
+                                            <div class="divider-custom-line"></div>
+                                        </div>
+                                        <!-- Portfolio Modal - Image-->
+                                        <img class="img-fluid rounded mb-5" src="#" alt="..." width="400" />
+                                        <!-- Portfolio Modal - Text-->
+                                        <p class="mb-4">Displays random Pokémon information gathered from APIs. This
+                                            feature is developed using django and bootstrap. </p>
+                                        <a class="btn btn-primary" href="{% url 'random_pokemon'%}">Check out
+                                            feature</a>
+                                        <div class="my-1">
+                                            <a href="https://github.com/yakrk/" class="card-link " target="_blank"><i
+                                                    class="fab fa-fw fa-github"></i></a>
+                                        </div>
+                                        <div class="my-4">
+                                            <p class="card-link" data-bs-dismiss="modal">
+                                                <i class="fas fa-xmark fa-fw"></i>
+                                                Close Window
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</section>

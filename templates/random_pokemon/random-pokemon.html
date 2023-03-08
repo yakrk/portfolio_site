@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="page-section bg-primary mb-0" id="color_palette_generator">
+    <div class="bg-color container-fluid px-4 pt-5">
+    <h2 class="page-section-heading text-center text-uppercase">Pokemon of the day</h2>
+    </div>
+    {% include 'partials/_alert.html' %}
+    <div class="container my-3">
+        <div class="text-center">
+        <img src="{{image_url}}" alt="" width="200">
+        <h4 class="my-2">Pokemon No.{{pokemon_id}}</h4>
+        <h4 class="my-2">{{pokemon_name}}</h4>
+        <h5 class="my-2">Type: 
+        {% for type in pokemon_types %}
+        {{type.type.name}} 
+        {%endfor%}
+    </h5>
+        <p>*Images are from Wikipedia via <a href="https://www.mediawiki.org/wiki/API:Query#">Mediawiki API</a>. (hence, limited...) <br>
+        **Pokemon information is gathered from <a href="https://pokeapi.co/">PokeAPI</a></p>
+    </div>
+    </div>
+</section>
+{%endblock%}

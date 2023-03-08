@@ -1,0 +1,9 @@
+{% load static%}
+{% include 'partials/_header.html'%}
+    <body id="page-top">
+        {% include 'partials/_navbar.html'%}
+        {% block content %}
+        {% endblock %}
+        {% include 'partials/_footer.html' %}
+    </body>
+</html>
