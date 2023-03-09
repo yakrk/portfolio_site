@@ -6,6 +6,7 @@ from django.core.mail import send_mail, EmailMessage
 import os
 import environ
 from portfolio.settings import BASE_DIR
+from .models import Portfolio, Tag
 
 # open .env
 env = environ.Env(DEBUG=(bool, False))
@@ -45,5 +46,10 @@ def index(request):
         messages.success(
             request, "Your inquiry has been submitted.")
         return redirect('{}#contact'.format(reverse('index')))
-    return render(request, "pages/top.html")
+    else:
+        portfolios = Portfolio.objects.order_by("-created_date").filter(is_published=True)
+        context = {
+            "portfolios" : portfolios
+        }
+    return render(request, "pages/top.html", context)
     
