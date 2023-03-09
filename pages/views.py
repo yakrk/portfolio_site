@@ -6,7 +6,7 @@ from django.core.mail import send_mail, EmailMessage
 import os
 import environ
 from portfolio.settings import BASE_DIR
-from .models import Portfolio, Tag
+from .models import Portfolio, PortfolioTag
 
 # open .env
 env = environ.Env(DEBUG=(bool, False))
