@@ -1,0 +1,68 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+{% include "partials/commerce_partials/_head.html" %}
+{% include "partials/commerce_partials/_commerce_navbar.html" %}
+
+<!-- Main Content -->
+<section class="page-section bg-primary mb-0" id="commerce_purchase_history">
+  <div class="container-fluid px-4">
+    <div class="row d-flex justify-content-center mx-2 mx-md-4">
+    <nav aria-label="breadcrumb" class="">
+      <ol class="breadcrumb" style="margin-bottom:0;">
+          <li class="breadcrumb-item active"><a title="Breadcrumb" href="{% url 'commerce_top' %}"><i class="fa fa-home"> Home</i></a></li>
+      </ol>
+    </nav>
+    <h3 class="mb-4 mt-2">Purchase History</h3>
+    </div>
+    <div class="row d-flex justify-content-center mx-2 mx-md-4">
+        {% if messages %} {% for message in messages %}
+        <div id="message" class="container">
+          <div
+            class="alert alert-{{message.tags}} alert-dismissible text-center"
+            role="alert"
+          >
+            <button type="button" class="btn-close" data-bs-dismiss="alert">
+              <span aria-hidden="True"> &times </span>
+            </button>
+            <strong>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Error:
+              {%else %} {{ message.tags|title}} {%endif%}
+            </strong>
+            {{message}}
+          </div>
+        </div>
+        {%endfor%} {%endif%}
+
+    <table class="table table-hover align-middle">
+        <thead class="align-middle">
+            <tr>
+                <th scope="col" style="width:10%">#</th>
+                <th scope="col" style="width:40%">Purchased Date</th>
+                <th scope="col" style="width:40%">Total Price</th>
+                <th scope="col" style="width:10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchase_history%}
+            <tr>
+                <td>{{purchase.id}}</td>
+                <td>{{purchase.purchased_date}}</td>
+                <td>¥{{purchase.total_price}}</td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" id="purchase_history_details", 
+                    name="purchase_history_details" href="{% url 'purchase_history_details' purchase.id %}"> Details</a>
+                </td>
+            </tr>
+                {%endfor%}
+        </tbody>
+    </table>
+    </div>
+    <div class="row mx-1 mx-md-4">
+        {%if not purchase_history %}
+        <div class="col-12 text-danger">You have nothing in your Purchase History. Please check our great products from <a href="{%url 'commerce_top'%}">HERE</a></div>
+        {%endif%}
+    </div>
+  </div>
+</section>
+{%endblock%}

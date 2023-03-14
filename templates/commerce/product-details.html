@@ -1,0 +1,76 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+{% include "partials/commerce_partials/_head.html" %}
+{% include "partials/commerce_partials/_commerce_navbar.html" %}
+
+<!-- Main Content -->
+<section class="page-section bg-primary mb-0" id="commerce_product_details">
+  <div class="container-fluid px-4">
+
+    <div class="row mx-1 mx-md-4">
+      <nav aria-label="breadcrumb" class="">
+        <ol class="breadcrumb" style="margin-bottom:0;">
+            <li class="breadcrumb-item"><a title="Breadcrumb Example" href="{% url 'commerce_top' %}"><i class="fa fa-home"> Home</i></a></li>
+            <li class="breadcrumb-item active"><a title="Breadcrumb Example" href="{% url 'category_top' 1 %}"> {{product_info.category_name}}</a></li>
+        </ol>
+      </nav>
+      <div class="col-12 col-md-6 d-flex justify-content-center">
+        <img src="{{product_info.product_image.url}}" alt="" width="350" />
+      </div>
+      <div class="col-12 col-md-6 mt-4">
+        <h4>Name: {{product_info.product_name}}</h4>
+        <p>Description: {{product_info.product_description}}</p>
+        {% if price.is_discount_price_on%}
+        <p>
+          <s>Standard Price: ¥{{price.standard_price}}</s>
+          <br />
+          <span class="text-danger"
+            >Discount Price: ¥{{price.discount_price}}</span
+          >
+          <br />
+          {%else%}
+        </p>
+
+        <p>
+          Standard Price: ¥{{price.standard_price}}
+          <br />
+          {%endif%} Price(w/tax): ¥{{price.price_with_tax}}
+        </p>
+        <p>Stock Available: {{stock.remaining_stock}}</p>
+        <form name="add_cart" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="Amount">Amount</label>
+            <select class="form-control" id="AmountSelect" name="amount">
+              {% for value in select_values %}
+              <option>{{value}}</option>
+              {%endfor%}
+            </select>
+          </div>
+          <button class="btn btn-primary my-3" id="add_cart">
+            Add to Cart
+          </button>
+        </form>
+        {% if messages %} {% for message in messages %}
+        <div id="message" class="container">
+          <div
+            class="alert alert-{{message.tags}} alert-dismissible text-center"
+            role="alert"
+          >
+            <button type="button" class="btn-close" data-bs-dismiss="alert">
+              <span aria-hidden="True"> &times </span>
+            </button>
+            <strong>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Error:
+              {%else %} {{ message.tags|title}} {%endif%}
+            </strong>
+            {{message}}
+          </div>
+        </div>
+        {%endfor%} {%endif%}
+      </div>
+    </div>
+  </div>
+</section>
+{%endblock%}

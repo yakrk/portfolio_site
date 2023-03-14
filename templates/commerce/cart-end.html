@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+{% include "partials/commerce_partials/_head.html" %}
+{% include "partials/commerce_partials/_commerce_navbar.html" %}
+
+<!-- Main Content -->
+<section class="page-section bg-primary mb-0" id="commerce_cart_end">
+  <div class="container-fluid px-4 text-center">
+    <h3 class="mb-4">Success! <br>Products are on your way!!</h3>
+    <p>See details at <a href="{%url 'purchase_history'%}">Purchase History</a></p>
+  </div>
+</section>
+{%endblock%}

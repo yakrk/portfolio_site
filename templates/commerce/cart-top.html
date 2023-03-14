@@ -1,0 +1,88 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+{% include "partials/commerce_partials/_head.html" %}
+{% include "partials/commerce_partials/_commerce_navbar.html" %}
+
+<!-- Main Content -->
+<section class="page-section bg-primary mb-0" id="commerce_cart_top">
+  <div class="container-fluid px-4">
+    <div class="row d-flex justify-content-center mx-2 mx-md-4">
+    <nav aria-label="breadcrumb" class="">
+      <ol class="breadcrumb" style="margin-bottom:0;">
+          <li class="breadcrumb-item active"><a title="Breadcrumb Example" href="{% url 'commerce_top' %}"><i class="fa fa-home"> Home</i></a></li>
+      </ol>
+    </nav>
+    <h3 class="mb-4 mt-2">Cart</h3>
+    </div>
+    <div class="row d-flex justify-content-center mx-2 mx-md-4">
+        {% if messages %} {% for message in messages %}
+        <div id="message" class="container">
+          <div
+            class="alert alert-{{message.tags}} alert-dismissible text-center"
+            role="alert"
+          >
+            <button type="button" class="btn-close" data-bs-dismiss="alert">
+              <span aria-hidden="True"> &times </span>
+            </button>
+            <strong>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Error:
+              {%else %} {{ message.tags|title}} {%endif%}
+            </strong>
+            {{message}}
+          </div>
+        </div>
+        {%endfor%} {%endif%}
+
+    <table class="table table-hover align-middle">
+        <thead class="align-middle">
+            <tr>
+                <th scope="col" style="width:35%">Product Name</th>
+                <th scope="col" style="width:20%">Price</th>
+                <th scope="col" style="width:15%">Amount</th>
+                <th scope="col" style="width:25%">Subtotal<span class="small"> (w/tax)</span></th>
+                <th scope="col" style="width:5%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cartitems%}
+            <tr>
+                <td>{{item.product}}</td>
+                <td>¥{{item.price_with_tax}}</td>
+                <td>{{item.amount}}</td>
+                <td>¥{{item.cart_item_price}}</td>
+                <td>
+                    <a class="btn btn-danger btn-sm" id="cart_item_delete", 
+                    name="cart_item_delete" href="{% url 'cart_item_delete' item.id %}"> Delete</a>
+                </td>
+            </tr>
+                {%endfor%}
+        </tbody>
+    </table>
+    </div>
+    <div class="row mx-1 mx-md-4">
+        {%if cartitems %}
+        <div class="col-12 d-flex justify-content-end">
+            Total price(w/tax): ¥{{cart.total_price}}
+        </div>
+        {%else%}
+        <div class="col-12 text-danger">You have nothing in your cart. Please check our great products from <a href="{%url 'commerce_top'%}">HERE</a></div>
+        {%endif%}
+    </div>
+    <div class="row mx-1 mx-md-4 mt-3">
+        {%if cartitems %}
+        <div class="col-12 d-flex justify-content-end">
+            <form id="checkout" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary" name="Checkout">Checkout</button>
+            </form>
+        </div>
+        {%else%}
+        <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-primary disabled" name="Checkout">Checkout</button>
+        </div>
+        {%endif%}
+    </div>
+  </div>
+</section>
+{%endblock%}

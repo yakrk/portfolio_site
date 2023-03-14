@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+{% include "partials/commerce_partials/_head.html" %}
+{% include "partials/commerce_partials/_commerce_navbar.html" %}
+
+<section class="page-section bg-primary mb-0" id="register">
+  <div class="container-fluid px-4">
+      <!-- Register Section Heading-->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Register Account</h2>
+      <!-- Icon Divider-->
+      <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+      </div>
+      <!-- alert message -->
+      {% include 'partials/_alert.html' %}
+      <!-- Contact Section Form-->
+      <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+              <form id="contactForm" action="{% url 'register' %}" method="POST">
+                  {% csrf_token %}
+                  <!-- Name input-->
+                  <div class="form-floating mb-3">
+                      <input class="form-control" name="first_name" id="firstname" type="text" placeholder="Enter your first name..."
+                          data-sb-validations="required" />
+                      <label for="name">First name</label>
+                      <div class="invalid-feedback" data-sb-feedback="name:required">A first name is required.</div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input class="form-control" name="last_name" id="lastname" type="text" placeholder="Enter your last name..."
+                        data-sb-validations="required" />
+                    <label for="name">Last name</label>
+                    <div class="invalid-feedback" data-sb-feedback="name:required">A last name is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" name="username" id="username" type="text" placeholder="Enter your username..."
+                      data-sb-validations="required" />
+                  <label for="name">Username</label>
+                  <div class="invalid-feedback" data-sb-feedback="name:required">A username is required.</div>
+              </div>
+                  <!-- Email address input-->
+                  <div class="form-floating mb-3">
+                      <input class="form-control" id="email" name="email" type="email" placeholder="name@example.com"
+                          data-sb-validations="required,email" />
+                      <label for="email">Email address</label>
+                      <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                      <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                  </div>
+                  <!-- Password1 input-->
+                  <div class="form-floating mb-3">
+                      <input class="form-control" id="password1" name="password1" type="password" placeholder="password"
+                          data-sb-validations="required" />
+                      <label for="phone">Password</label>
+                      <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.
+                      </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input class="form-control" id="password2" name="password2" type="password" placeholder="password"
+                        data-sb-validations="required" />
+                    <label for="phone">Re-enter Password</label>
+                    <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.
+                    </div>
+                </div>
+
+                  <!-- Submit error message-->
+                  <!-- This is what your users will see when there is-->
+                  <!-- an error submitting the form-->
+                  <div class="d-none" id="submitErrorMessage">
+                      <div class="text-center text-danger mb-3">Error registering account</div>
+                  </div>
+                  <!-- Submit Button-->
+                  <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Register</button>
+              </form>
+          </div>
+      </div>
+  </section>
+{% endblock %}
