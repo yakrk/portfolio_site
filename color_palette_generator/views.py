@@ -1,15 +1,15 @@
 from django.shortcuts import render
-import PIL
 from PIL import Image
 import numpy as np
 
+
 def color_palette(request):
     hex_dict = {}
-    if request.method=="POST":
+    if request.method == "POST":
         # Get file
         uploaded_file = request.FILES.get('image')
         if uploaded_file is not None:
-            img= Image.open(uploaded_file)
+            img = Image.open(uploaded_file)
             if img.mode != "RGB":
                 img = img.convert("RGB")
             img_array = np.asarray(img)
@@ -18,25 +18,28 @@ def color_palette(request):
             for i, rgb_np in enumerate(color_palette):
                 # get hex color code
                 rgb_str = str(rgb_np)
-                rgb_str_clean = rgb_str.replace("[","").replace("]","").replace("   "," ").replace("  "," ")
-                r,g,b = rgb_str_clean.strip().split(" ")
+                rgb_str_clean = rgb_str.replace("[", "").replace(
+                    "]", "").replace("   ", " ").replace("  ", " ")
+                r, g, b = rgb_str_clean.strip().split(" ")
                 hex_color = rgb_to_hex(int(r), int(g), int(b))
                 # get percentage
-                percentage = round(get_percentage(img_array, hex_color),2)
+                percentage = round(get_percentage(img_array, hex_color), 2)
                 # create dict to pass to html
                 hex_dict_per_index = {}
-                hex_dict_per_index["hex"]= hex_color
-                hex_dict_per_index["percentage"]= percentage
-                hex_dict[i+1]=hex_dict_per_index
+                hex_dict_per_index["hex"] = hex_color
+                hex_dict_per_index["percentage"] = percentage
+                hex_dict[i+1] = hex_dict_per_index
             context = {
-                "hex":hex_dict,
+                "hex": hex_dict,
             }
-            return render(request, "color_palette_generator\color_palette_generator.html", context)
+            return render(request, "color_palette_generator\color_palette_generator.html\
+                ", context)
     return render(request, "color_palette_generator\color_palette_generator.html")
 
 
 def rgb_to_hex(r, g, b):
     return '#{:02x}{:02x}{:02x}'.format(r, g, b)
+
 
 def palette(img_array):
     palette, index = np.unique(asvoid(img_array).ravel(), return_inverse=True)
@@ -45,9 +48,13 @@ def palette(img_array):
     order = np.argsort(count)
     return palette[order[::-1]]
 
+
 def asvoid(image_array):
     image_array = np.ascontiguousarray(image_array)
-    return image_array.view(np.dtype((np.void, image_array.dtype.itemsize * image_array.shape[-1])))
+    return image_array.view(
+        np.dtype((np.void, image_array.dtype.itemsize * image_array.shape[-1]))
+        )
+
 
 def get_percentage(image_array, hex_color):
     # Convert the hex color value to an RGB tuple

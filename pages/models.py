@@ -1,11 +1,15 @@
 from django.db import models
-from datetime import datetime 
+from datetime import datetime
 
 # Create your models here.
+
+
 class PortfolioTag(models.Model):
     portfolio_tag = models.CharField(max_length=200)
+
     def __str__(self) -> str:
-        return self.tag
+        return str(self.portfolio_tag)
+
 
 class Portfolio(models.Model):
     title = models.CharField(max_length=200)
@@ -17,5 +21,6 @@ class Portfolio(models.Model):
     created_date = models.DateTimeField(default=datetime.now)
     is_published = models.BooleanField(default=False)
     portfolio_tag = models.ManyToManyField(PortfolioTag)
+
     def __str__(self) -> str:
-        return self.title
+        return str(self.title)

@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
-    path('color-palette-generator', include('color_palette_generator.urls')),
-    path('random-pokemon', include('random_pokemon.urls')),
-    path('blogs', include('blog.urls')),
+    path('color-palette-generator/', include('color_palette_generator.urls')),
+    path('random-pokemon/', include('random_pokemon.urls')),
+    path('blogs/', include('blog.urls')),
+    path('commerce/', include('commerce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
